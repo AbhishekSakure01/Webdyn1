@@ -14,5 +14,22 @@ services:
       - floci-data:/var/lib/floci
     restart: unless-stopped
 
+  postgres:
+    image: postgres:16
+    container_name: webdyn-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: webdyn
+      POSTGRES_USER: webdyn
+      POSTGRES_PASSWORD: webdyn123
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
 volumes:
   floci-data:
+  postgres-data:
